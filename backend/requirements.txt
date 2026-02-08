@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+httpx
+python-dotenv
+google-generativeai>=0.9.0
+groq
+mistralai
