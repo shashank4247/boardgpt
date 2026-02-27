@@ -6,7 +6,6 @@ import {
     Scale,
     Settings,
     ChevronRight,
-    Cpu
 } from 'lucide-react';
 
 const agentsData = [
@@ -17,7 +16,6 @@ const agentsData = [
         icon: TrendingUp,
         color: 'text-blue-600',
         bg: 'bg-blue-50',
-        model: 'Gemini 2.0 Flash',
         status: 'Active'
     },
     {
@@ -27,7 +25,6 @@ const agentsData = [
         icon: ShieldAlert,
         color: 'text-orange-600',
         bg: 'bg-orange-50',
-        model: 'Llama 3.3 70B',
         status: 'Active'
     },
     {
@@ -37,7 +34,6 @@ const agentsData = [
         icon: Compass,
         color: 'text-purple-600',
         bg: 'bg-purple-50',
-        model: 'Mistral Large',
         status: 'Active'
     },
     {
@@ -47,7 +43,6 @@ const agentsData = [
         icon: Scale,
         color: 'text-emerald-600',
         bg: 'bg-emerald-50',
-        model: 'Llama 3.1 8B',
         status: 'Active'
     },
     {
@@ -57,7 +52,6 @@ const agentsData = [
         icon: Settings,
         color: 'text-slate-600',
         bg: 'bg-slate-50',
-        model: 'Gemini 2.0 Pro',
         status: 'Active'
     }
 ];
@@ -92,13 +86,7 @@ const AgentsOverview = ({ onSelectAgent }) => {
                                 {agent.description}
                             </p>
 
-                            <div className="flex items-center justify-between pt-6 border-t border-slate-50">
-                                <div className="flex items-center gap-2">
-                                    <div className="p-1.5 rounded-lg bg-slate-100 text-slate-500">
-                                        <Cpu size={14} />
-                                    </div>
-                                    <span className="text-xs font-bold text-slate-500 uppercase tracking-tighter">{agent.model}</span>
-                                </div>
+                            <div className="flex items-center justify-end pt-6 border-t border-slate-50">
                                 <div className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <ChevronRight size={20} />
                                 </div>
