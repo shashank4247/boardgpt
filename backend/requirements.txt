@@ -3,6 +3,7 @@ uvicorn
 pydantic
 httpx
 python-dotenv
-google-generativeai>=0.9.0
+google-generativeai==0.8.5
 groq
 mistralai
+python-multipart

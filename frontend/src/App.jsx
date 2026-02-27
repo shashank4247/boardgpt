@@ -44,6 +44,7 @@ function App() {
   const [runtimeError, setRuntimeError] = useState(null);
   const [selectedAgent, setSelectedAgent] = useState(null);
   const [mode, setMode] = useState('enterprise'); // 'enterprise' or 'startup'
+  const [decisionInput, setDecisionInput] = useState('');
 
   // Catch unhandled errors in this component
   useEffect(() => {
@@ -89,16 +90,46 @@ function App() {
     fetchHistory();
   }, []);
 
-  const handleAnalyze = async (text) => {
+  const handleAnalyze = async (text, file = null) => {
     setLoading(true);
     setError(null);
     setAnalysis(null);
     setCurrentView('dashboard'); // Switch to dashboard on analysis
     try {
-      const response = await axios.post(`${API_BASE_URL}/analyze`, {
-        text,
-        mode
-      });
+      let response;
+      if (file) {
+        // Use FormData for file upload
+        const formData = new FormData();
+        formData.append('text', text);
+        formData.append('mode', mode);
+        formData.append('file', file);
+
+        response = await axios.post(`${API_BASE_URL}/analyze`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+      } else {
+        // Fallback to JSON if no file (or update backend to handle JSON too? Best to stick to one if possible, but backend might need logic)
+        // Actually, let's try to send JSON as usual if no file, OR force everything to FormData.
+        // For simplicity and backward compatibility if backend supports it, let's keep JSON for no-file.
+        // BUT my plan said "update analyze_decision signature to accept form data". 
+        // If I change backend to Form, it won't accept JSON body anymore. The plan was "multipart/form-data".
+        // So I must use FormData even if no file is present? 
+        // Wait, Form data fields are separate. 
+        // If I change backend: `async def analyze_decision(text: str = Form(...), mode: str = Form(...), file: UploadFile = File(None))`
+        // Then I MUST use FormData on frontend.
+
+        const formData = new FormData();
+        formData.append('text', text);
+        formData.append('mode', mode);
+        // No file append
+
+        response = await axios.post(`${API_BASE_URL}/analyze`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+      }
+
       setAnalysis(response.data);
       fetchHistory();
     } catch (err) {
@@ -155,6 +186,7 @@ Assumptions: ${(a.assumptions || []).join(', ')}
     setAnalysis(null);
     setError(null);
     setCurrentView('dashboard');
+    setDecisionInput('');
   };
 
   if (runtimeError) return <ErrorFallback error={runtimeError} />;
@@ -167,7 +199,12 @@ Assumptions: ${(a.assumptions || []).join(', ')}
         </div>
         <div className="relative z-10 text-left">
           <h2 className="text-2xl font-bold text-slate-900 mb-6 font-sans">Strategic Business Decision</h2>
-          <DecisionInput onAnalyze={handleAnalyze} isLoading={loading} />
+          <DecisionInput
+            onAnalyze={handleAnalyze}
+            isLoading={loading}
+            value={decisionInput}
+            onChange={setDecisionInput}
+          />
           {error && (
             <div className="mt-6 p-4 bg-rose-50 border border-rose-100 rounded-2xl text-rose-600 text-sm font-medium flex items-center gap-3">
               <AlertTriangle size={18} /> {error}
@@ -369,8 +406,8 @@ Assumptions: ${(a.assumptions || []).join(', ')}
               <button
                 onClick={() => setMode('enterprise')}
                 className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${mode === 'enterprise'
-                    ? 'bg-white text-indigo-600 shadow-sm'
-                    : 'text-slate-500 hover:text-slate-700'
+                  ? 'bg-white text-indigo-600 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-700'
                   }`}
               >
                 Enterprise
@@ -378,8 +415,8 @@ Assumptions: ${(a.assumptions || []).join(', ')}
               <button
                 onClick={() => setMode('startup')}
                 className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${mode === 'startup'
-                    ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-200'
-                    : 'text-slate-500 hover:text-slate-700'
+                  ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-200'
+                  : 'text-slate-500 hover:text-slate-700'
                   }`}
               >
                 Startup

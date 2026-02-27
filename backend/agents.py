@@ -6,8 +6,10 @@ from groq import Groq
 from mistralai import Mistral
 from dotenv import load_dotenv
 from models import AgentResponse
+from pathlib import Path
 
-load_dotenv()
+env_path = Path(__file__).parent / '.env'
+load_dotenv(dotenv_path=env_path)
 
 # API Configuration
 GEMINI_KEY = os.getenv("GEMINI_API_KEY")
@@ -25,17 +27,18 @@ groq_client = Groq(api_key=GROQ_KEY) if is_valid_key(GROQ_KEY) else None
 mistral_client = Mistral(api_key=MISTRAL_KEY) if is_valid_key(MISTRAL_KEY) else None
 
 # Role to Model Mapping (Updated for 2026 availability)
+# Role to Model Mapping (Updated for 2026 availability)
 AGENT_CONFIGS = {
     "Finance": {"provider": "gemini", "model": "gemini-2.0-flash"},
     "Risk": {"provider": "groq", "model": "llama-3.3-70b-versatile"},
-    "Strategy": {"provider": "mistral", "model": "mistral-large-latest"},
+    "Strategy": {"provider": "groq", "model": "llama-3.3-70b-versatile"}, # Switched due to Mistral 401
     "Ethics": {"provider": "groq", "model": "llama-3.1-8b-instant"},
-    "Operations": {"provider": "gemini", "model": "gemini-2.0-pro-exp-02-05"}
+    "Operations": {"provider": "gemini", "model": "gemini-2.0-flash-lite-001"} # Switched to valid Lite model
 }
 
 # Robust Fallback Configuration
 FALLBACK_CONFIGS = {
-    "Strategy": {"provider": "groq", "model": "llama-3.3-70b-versatile"},
+    "Strategy": {"provider": "mistral", "model": "mistral-large-latest"}, # Mistral as fallback
     "Risk": {"provider": "gemini", "model": "gemini-2.0-flash"},
     "Ethics": {"provider": "gemini", "model": "gemini-2.0-flash"},
     "Finance": {"provider": "groq", "model": "llama-3.1-8b-instant"},
@@ -138,41 +141,69 @@ STARTUP_PROMPTS = {
     "assumptions": a list of operational assumptions made."""
 }
 
+async def retry_with_backoff(func, *args, retries=3, delay=2):
+    """Retries an async function if a rate limit (429) occurs."""
+    for attempt in range(retries):
+        try:
+            return await func(*args)
+        except Exception as e:
+            error_str = str(e).lower()
+            # Check for common 429/quota indicators
+            if "429" in error_str or "quota" in error_str or "exhausted" in error_str:
+                if attempt < retries - 1:
+                    wait_time = delay * (2 ** attempt)  # Exponential backoff: 2s, 4s, 8s
+                    print(f"Rate limit hit. Retrying in {wait_time}s... (Attempt {attempt + 1}/{retries})")
+                    await asyncio.sleep(wait_time)
+                    continue
+            raise e
+
 async def call_gemini(model_name: str, prompt: str):
     if not GEMINI_KEY: raise ValueError("Gemini API Key missing")
     # Prepend models/ if not present
     full_model_name = f"models/{model_name}" if not model_name.startswith("models/") else model_name
     model = genai.GenerativeModel(full_model_name)
     loop = asyncio.get_event_loop()
-    response = await loop.run_in_executor(None, lambda: model.generate_content(
-        prompt, 
-        generation_config={
-            "response_mime_type": "application/json",
-            "temperature": 0
-        }
-    ))
-    return json.loads(response.text)
+    
+    async def _generate():
+        response = await loop.run_in_executor(None, lambda: model.generate_content(
+            prompt, 
+            generation_config={
+                "response_mime_type": "application/json",
+                "temperature": 0
+            }
+        ))
+        return json.loads(response.text)
+
+    return await retry_with_backoff(_generate)
 
 async def call_groq(model_name: str, prompt: str):
     if not groq_client: raise ValueError("Groq API Key missing or using placeholder")
     loop = asyncio.get_event_loop()
-    response = await loop.run_in_executor(None, lambda: groq_client.chat.completions.create(
-        model=model_name,
-        messages=[{"role": "user", "content": prompt + "\nReturn ONLY valid JSON."}],
-        response_format={"type": "json_object"},
-        temperature=0
-    ))
-    return json.loads(response.choices[0].message.content)
+    
+    async def _generate():
+        response = await loop.run_in_executor(None, lambda: groq_client.chat.completions.create(
+            model=model_name,
+            messages=[{"role": "user", "content": prompt + "\nReturn ONLY valid JSON."}],
+            response_format={"type": "json_object"},
+            temperature=0
+        ))
+        return json.loads(response.choices[0].message.content)
+
+    return await retry_with_backoff(_generate)
 
 async def call_mistral(model_name: str, prompt: str):
     if not mistral_client: raise ValueError("Mistral API Key missing or using placeholder")
-    response = await asyncio.get_event_loop().run_in_executor(None, lambda: mistral_client.chat.complete(
-        model=model_name,
-        messages=[{"role": "user", "content": prompt + "\nBy returning ONLY valid JSON following the schema."}],
-        response_format={"type": "json_object"},
-        temperature=0
-    ))
-    return json.loads(response.choices[0].message.content)
+    
+    async def _generate():
+        response = await asyncio.get_event_loop().run_in_executor(None, lambda: mistral_client.chat.complete(
+            model=model_name,
+            messages=[{"role": "user", "content": prompt + "\nBy returning ONLY valid JSON following the schema."}],
+            response_format={"type": "json_object"},
+            temperature=0
+        ))
+        return json.loads(response.choices[0].message.content)
+
+    return await retry_with_backoff(_generate)
 
 async def get_agent_analysis(role: str, decision_text: str, mode: str = "enterprise") -> AgentResponse:
     config = AGENT_CONFIGS[role]
