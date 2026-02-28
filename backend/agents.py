@@ -5,7 +5,7 @@ import google.generativeai as genai
 from groq import Groq
 from mistralai import Mistral
 from dotenv import load_dotenv
-from models import AgentResponse
+from models import AgentResponse, NewsGPTResponse
 from pathlib import Path
 
 env_path = Path(__file__).parent / '.env'
@@ -141,6 +141,28 @@ STARTUP_PROMPTS = {
     "assumptions": a list of operational assumptions made."""
 }
 
+NEWS_GPT_PROMPT = """You are NewsGPT, an AI designed to find historical/real-world news context.
+The board has analyzed a business decision: {decision_text}
+Their Consensus Verdict was: {verdict}
+
+If the verdict is Approve or Conditional, your task is to retrieve or generate realistic, historical news articles where similar decisions succeeded or were successfully implemented.
+If the verdict is Reject, find real-world cases/news where similar decisions failed or led to negative consequences.
+
+Your output must be a valid JSON object matching this exact schema:
+{{
+  "articles": [
+    {{
+      "headline": "...",
+      "summary": "...",
+      "source": "...",
+      "date": "..."
+    }}
+  ],
+  "explanation": "A paragraph explaining how these real-world events relate to the board's decision."
+}}
+Return ONLY valid JSON. Return exactly 3 to 4 articles."""
+
+
 async def retry_with_backoff(func, *args, retries=3, delay=2):
     """Retries an async function if a rate limit (429) occurs."""
     for attempt in range(retries):
@@ -258,6 +280,39 @@ async def get_agent_analysis(role: str, decision_text: str, mode: str = "enterpr
         reasoning=data.get("reasoning", "No reasoning provided."),
         assumptions=normalized_assumptions
     )
+
+async def generate_news(decision_text: str, verdict: str, mode: str = "enterprise") -> dict:
+    prompt = NEWS_GPT_PROMPT.format(decision_text=decision_text, verdict=verdict)
+    
+    # Try Gemini first
+    try:
+        data = await call_gemini("gemini-2.0-flash", prompt)
+        if "articles" in data and "explanation" in data:
+            return data
+    except Exception as e:
+        print(f"NewsGPT (Gemini) failed: {e}. Trying fallback to Groq...")
+    
+    # Try Groq as Fallback
+    try:
+        data = await call_groq("llama-3.3-70b-versatile", prompt)
+        if "articles" in data and "explanation" in data:
+            return data
+    except Exception as e:
+        print(f"NewsGPT (Groq) failed: {e}. Trying fallback to Mistral...")
+        
+    # Try Mistral as second fallback
+    try:
+        data = await call_mistral("mistral-large-latest", prompt)
+        if "articles" in data and "explanation" in data:
+            return data
+    except Exception as e:
+        print(f"NewsGPT (Mistral) failed: {e}")
+        
+    # Final fallback empty response
+    return {
+        "articles": [],
+        "explanation": "Could not connect to AI providers to fetch relevant news."
+    }
 
 async def run_board_meeting(decision_text: str, mode: str = "enterprise"):
     tasks = [get_agent_analysis(role, decision_text, mode) for role in AGENT_PROMPTS.keys()]

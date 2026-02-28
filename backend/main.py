@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Form, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from models import DecisionRequest, ConsensusResponse
-from agents import run_board_meeting
+from agents import run_board_meeting, generate_news
 from logic import aggregate_verdicts, load_history, get_cached_analysis
 from typing import List, Optional
 
@@ -52,6 +52,10 @@ async def analyze_decision(
         
         # Aggregate the results and save to history
         consensus = aggregate_verdicts(agent_analyses, decision_text, mode)
+        
+        # Generate News articles based on verdict
+        news_data = await generate_news(decision_text, consensus.final_verdict, mode)
+        consensus.news = news_data
         
         return consensus
     except Exception as e:
