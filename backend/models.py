@@ -12,6 +12,16 @@ class AgentResponse(BaseModel):
     reasoning: str
     assumptions: List[str]
 
+class NewsArticle(BaseModel):
+    headline: str
+    summary: str
+    source: str
+    date: str
+
+class NewsGPTResponse(BaseModel):
+    articles: List[NewsArticle]
+    explanation: str
+
 class ConsensusResponse(BaseModel):
     decision_text: str
     final_verdict: str
@@ -20,3 +30,4 @@ class ConsensusResponse(BaseModel):
     explanation: str
     mode: str = "enterprise"
     timestamp: Optional[str] = None
+    news: Optional[NewsGPTResponse] = None

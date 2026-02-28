@@ -1,210 +1,5 @@
 [
   {
-    "decision_text": "Should we continue hiring engineers if our runway is only 9 months and revenue growth is uncertain",
-    "final_verdict": "Reject",
-    "average_confidence": 70,
-    "agent_analyses": [
-      {
-        "agent_role": "Finance",
-        "verdict": "Reject",
-        "confidence": 60,
-        "reasoning": "While hiring engineers is crucial for the company's long-term growth and product development, the current 9-month runway poses a significant risk to short-term cash sustainability. If revenue growth is uncertain, it may be challenging to achieve profitability within the given time frame, making it difficult to sustain the business. Hiring more engineers will only exacerbate burn rate and increase dependency on funding, making it a high-risk decision at this juncture.",
-        "assumptions": [
-          "Current 9-month runway with uncertain revenue growth",
-          "Burn rate of existing engineering team will continue unaltered",
-          "No significant reductions in operational expenses expected",
-          "No alternative cost-cutting measures will be implemented before hiring more engineers"
-        ]
-      },
-      {
-        "agent_role": "Risk",
-        "verdict": "Conditional",
-        "confidence": 60,
-        "reasoning": "Given the high-risk nature of our startup environment, I am cautiously approaching the decision to continue hiring engineers. With only a 9-month runway and uncertain revenue growth, we face significant existential risk. However, not hiring could lead to single-point failures in our product development, exacerbating market uncertainty. Our founder's vision and leadership are crucial, and over-reliance on them poses a risk. Balancing these factors, conditional approval is granted, provided we revisit hiring plans within 3 months to reassess our financial situation and revenue projections.",
-        "assumptions": [
-          "Uncertain revenue growth will stabilize within the next 6 months",
-          "Current engineer utilization is at 80% or higher",
-          "No significant single-point failures in engineering team",
-          "Founders are actively mitigating dependency risks",
-          "Market demand for our product will increase in the next quarter",
-          "Burn rate will decrease by 10% through cost optimization"
-        ]
-      },
-      {
-        "agent_role": "Strategy",
-        "verdict": "Conditional",
-        "confidence": 70,
-        "reasoning": "Given the current runway of 9 months and uncertain revenue growth, it's crucial to balance the need for engineering talent with the financial realities. Continuing to hire engineers could be justified if they are critical to delivering a minimum viable product (MVP) or enhancing our product-market fit. However, it's essential to ensure that any hiring decisions are tightly aligned with immediate business needs and that we maintain flexibility to pivot if revenue growth does not materialize as planned. Prioritizing speed and adaptability will be key, possibly through flexible hiring models or partnerships that can be adjusted as circumstances change.",
-        "assumptions": [
-          "Revenue growth will remain uncertain for the foreseeable future",
-          "The current engineering team is working efficiently and effectively",
-          "There are no immediate, critical engineering needs that must be filled to maintain competitive differentiation",
-          "Flexible hiring models or partnerships are viable alternatives for accessing necessary engineering talent"
-        ]
-      },
-      {
-        "agent_role": "Ethics",
-        "verdict": "Reject",
-        "confidence": 80,
-        "reasoning": "While our startup's 'move fast and break things' approach can be beneficial for rapid innovation, it is not suitable when paired with an uncertain revenue growth and a short runway. Hiring additional engineers without a stable financial foundation puts the company at risk of burnout and potential layoffs, which would negatively impact existing employees. Furthermore, a lack of revenue clarity makes it challenging to justify new hiring decisions. We should reassess our funding plans and revenue projections before making further staffing decisions.",
-        "assumptions": [
-          "Our current revenue growth is uncertain and may not support additional hiring.",
-          "A short runway (9 months) may not be sufficient to support the financial implications of new engineering hires.",
-          "Hiring additional engineers without a stable financial foundation may lead to layoffs if revenue growth does not materialize as expected."
-        ]
-      },
-      {
-        "agent_role": "Operations",
-        "verdict": "Reject",
-        "confidence": 80,
-        "reasoning": "Given our current runway of only 9 months and uncertain revenue growth, aggressively hiring engineers may not be the most prudent decision. This approach could lead to significant increases in operational costs without guaranteed corresponding revenue increases, potentially jeopardizing our ability to extend our runway. Instead, we should focus on maximizing the efficiency and output of our current engineering team, prioritizing projects that have the highest potential for near-term revenue impact, and maintain a lean operational structure to ensure survival and potential for future growth.",
-        "assumptions": [
-          "Revenue growth will remain uncertain for the next 9 months",
-          "Hiring additional engineers will significantly increase operational costs",
-          "Current engineering team can handle critical tasks with some process optimizations",
-          "No significant changes in market conditions that could drastically alter revenue projections"
-        ]
-      }
-    ],
-    "explanation": "Board consensus is Reject with Moderate agreement. Approvals: 0, Rejections: 3, Conditionals: 2.",
-    "timestamp": "2026-02-06T23:45:54.206698"
-  },
-  {
-    "decision_text": "Should we continue hiring engineers if our runway is only 9 months and revenue growth is uncertain",
-    "final_verdict": "Conditional",
-    "average_confidence": 69,
-    "agent_analyses": [
-      {
-        "agent_role": "Finance",
-        "verdict": "Conditional",
-        "confidence": 65,
-        "reasoning": "We anticipate liquidity issues within the next year given our runway of only 9 months and uncertain revenue growth. Continuing to hire more engineers at this time could further accelerate burn rate and strain our resources, thus making short-term cash sustainability questionable. That being said, scaling engineering talent is crucial for future growth; to mitigate this risk, we should prioritize engineers with versatile skill sets who can drive both immediate and long-term value. We must monitor our burn rate closely and revisit this decision if revenue growth does not materialize as expected.",
-        "assumptions": [
-          "{'key': 'Monthly burn rate', 'value': '200,000 USD', 'basis': 'Current hiring and operational costs'}",
-          "{'key': 'Revenue growth uncertainty', 'value': '25-50%', 'basis': 'Historical growth patterns and market trends'}",
-          "{'key': 'Engineer salary and benefits', 'value': '100,000 - 120,000 USD', 'basis': 'Industry averages and internal data'}"
-        ]
-      },
-      {
-        "agent_role": "Risk",
-        "verdict": "Conditional",
-        "confidence": 60,
-        "reasoning": "Given the startup's high-risk nature and uncertain revenue growth, continuing to hire engineers with only a 9-month runway poses significant existential risk. The potential for single-point failures, such as key engineer departures or inability to meet growth targets, is heightened. Founder dependency is also a concern if the engineering team's success is heavily reliant on the founders' skills and network. However, conditional approval can be considered if hiring is strategically focused on critical positions that directly drive revenue or significantly enhance the product, thereby potentially extending the runway or improving growth prospects.",
-        "assumptions": [
-          "Revenue growth will remain uncertain for the foreseeable future",
-          "Current engineering team is not sufficient to drive necessary growth",
-          "New hires will be critical to the company's ability to meet growth targets",
-          "Founders have a strong network and can attract and retain key talent",
-          "The startup has a clear plan for reducing burn rate if revenue growth does not meet projections"
-        ]
-      },
-      {
-        "agent_role": "Strategy",
-        "verdict": "Conditional",
-        "confidence": 80,
-        "reasoning": "Given the current 9-month runway and uncertain revenue growth, it's crucial to balance the need for engineering talent with financial prudence. While continuing to hire engineers could fuel innovation and potentially drive growth, it also increases burn rate and reduces the runway. A conditional approach would involve hiring strategically, focusing on key positions that can immediately impact revenue or significantly reduce costs, while also exploring cost-cutting measures and revenue acceleration strategies to extend the runway.",
-        "assumptions": [
-          "The startup has a clear, data-driven understanding of its customer acquisition costs and lifetime value.",
-          "There are identifiable engineering positions that can directly impact revenue growth or cost reduction.",
-          "The startup can negotiate flexible hiring contracts or consider freelance/contractor options to mitigate risk.",
-          "Competitors are also facing similar challenges, providing a window of opportunity for strategic maneuvering."
-        ]
-      },
-      {
-        "agent_role": "Ethics",
-        "verdict": "Conditional",
-        "confidence": 60,
-        "reasoning": "While hiring more engineers may seem like a priority for scaling, it's essential to weigh this decision against the current financial constraints. With only 9 months of runway and uncertain revenue growth, it's uncertain whether the company can sustain additional talent acquisition. However, hiring engineers could also lead to innovative solutions and revenue growth, making it a potentially critical investment. Therefore, further analysis is required to balance risk and potential returns.",
-        "assumptions": [
-          "The engineers hired will have a material impact on revenue and product development within the next 9 months.",
-          "Revenue growth will stabilize or accelerate within the next quarter.",
-          "The company can adapt to significant talent acquisition-related costs without compromising existing cash reserves."
-        ]
-      },
-      {
-        "agent_role": "Operations",
-        "verdict": "Reject",
-        "confidence": 80,
-        "reasoning": "Given our current runway of only 9 months and uncertain revenue growth, I believe it's imprudent to continue hiring engineers at this time. Our primary focus should be on optimizing our existing team's bandwidth and ensuring operational simplicity to maximize execution speed with the resources we have. Adding more engineers would not only increase our burn rate but also potentially lead to inefficiencies if we're unable to provide them with a clear direction due to revenue uncertainty. Instead, we should prioritize 'doing more with less' and concentrate on leveraging our current talent to drive critical projects forward, ensuring we can extend our runway through rigorous cost management and strategic prioritization.",
-        "assumptions": [
-          "The current team is capable of handling critical projects with some optimization.",
-          "Revenue growth will remain uncertain in the short term.",
-          "The cost of hiring and onboarding new engineers is significant and would accelerate our burn rate.",
-          "Operational efficiencies can be achieved through process improvements and better resource allocation."
-        ]
-      }
-    ],
-    "explanation": "Board consensus is Conditional with High agreement. Approvals: 0, Rejections: 1, Conditionals: 4.",
-    "timestamp": "2026-02-06T23:46:11.630900"
-  },
-  {
-    "decision_text": "Should we continue hiring engineers if our runway is only 9 months and revenue growth is uncertain",
-    "final_verdict": "Reject",
-    "average_confidence": 74,
-    "agent_analyses": [
-      {
-        "agent_role": "Finance",
-        "verdict": "Reject",
-        "confidence": 80,
-        "reasoning": "Considering our current runway of 9 months, it's risky to continue hiring engineers without addressing the pressing issue of cash sustainability. With uncertain revenue growth, it's hard to pinpoint when or if our expenses will be covered by incoming revenue. This could lead to a liquidity crunch, forcing us to make difficult choices or lay off employees.",
-        "assumptions": [
-          "Our current runway is 9 months with $1.2 million in expenses per quarter.",
-          "Revenue growth is uncertain and may not meet our budgeted projections.",
-          "Adding more engineers without addressing the cash burn rate may exacerbate our funding dependency."
-        ]
-      },
-      {
-        "agent_role": "Risk",
-        "verdict": "Conditional",
-        "confidence": 60,
-        "reasoning": "Continuing to hire engineers amid uncertainty poses significant existential risk due to potentially depleting our runway before achieving revenue growth. The single-point failure of not meeting revenue projections could exacerbate our financial situation. However, not hiring could also impede our ability to develop and market our product, further endangering our revenue stream. A balanced approach, considering both the need for product development and the financial constraints, is crucial.",
-        "assumptions": [
-          "Current cash burn rate may increase with additional hires",
-          "Revenue growth projections are highly uncertain",
-          "Product development is critical to achieving revenue goals",
-          "Founders have limited ability to adjust cash burn rate quickly",
-          "Market conditions may change, affecting revenue projections"
-        ]
-      },
-      {
-        "agent_role": "Strategy",
-        "verdict": "Conditional",
-        "confidence": 70,
-        "reasoning": "As the Chief Strategy Officer, I believe that continuing to hire engineers can be a strategic move if it accelerates our product development and enhances our competitive differentiation. However, with a runway of only 9 months and uncertain revenue growth, we need to prioritize adaptability and be prepared to pivot if necessary. The key is to balance the short-term costs with the long-term potential for growth and product-market fit. We should proceed with cautious optimism, closely monitoring our expenses and revenue projections.",
-        "assumptions": [
-          "Our engineering team can deliver a minimum viable product (MVP) within the next 6 months",
-          "The market demand for our product will increase in the next 12 months",
-          "We can reduce non-essential expenses to extend our runway if needed",
-          "Our competitors are not significantly ahead in terms of product development"
-        ]
-      },
-      {
-        "agent_role": "Ethics",
-        "verdict": "Reject",
-        "confidence": 80,
-        "reasoning": "Given the limited runway and uncertain revenue growth, hiring additional engineers without a clear plan to address these financial and operational challenges poses significant risks. It could lead to over-stretching resources, increased burn rate, and potential layoffs, ultimately harming employees. While 'moving fast and breaking things' might be an appealing mantra, it neglects the responsibilities that come with rapid scaling. Our decision should prioritize responsible growth, focusing on cost-control and revenue-driven hiring.",
-        "assumptions": [
-          "Assuming no drastic changes in the market or investor support in the next 9 months.",
-          "Assuming the current management team is aware of the risks associated with rapid growth and will make informed decisions."
-        ]
-      },
-      {
-        "agent_role": "Operations",
-        "verdict": "Reject",
-        "confidence": 80,
-        "reasoning": "Given our current runway of only 9 months and uncertainty surrounding revenue growth, it's crucial to prioritize operational simplicity and severe resource constraints. Continuing to hire engineers under these conditions could exponentially increase our burn rate, potentially leading to a shortfall in funds necessary to sustain our operations. Instead, we should focus on maximizing the productivity of our existing team, ensuring we're doing more with less, and maintaining agility in our operations to better navigate the uncertainty.",
-        "assumptions": [
-          "The current team is capable of adapting to increased workload temporarily",
-          "No significant immediate competitors that necessitate rapid expansion",
-          "Revenue growth uncertainties are due to market factors rather than lack of product development",
-          "Existing engineering team can handle critical product development needs"
-        ]
-      }
-    ],
-    "explanation": "Board consensus is Reject with Moderate agreement. Approvals: 0, Rejections: 3, Conditionals: 2.",
-    "timestamp": "2026-02-06T23:46:19.231039"
-  },
-  {
     "decision_text": "Is it financially responsible to increase marketing spend when our CAC is rising but growth is slowing?",
     "final_verdict": "Conditional",
     "average_confidence": 70,
@@ -1375,5 +1170,212 @@
     "explanation": "Board consensus is Reject with High agreement. Approvals: 0, Rejections: 5, Conditionals: 0.",
     "mode": "enterprise",
     "timestamp": "2026-02-14T12:23:04.171157"
+  },
+  {
+    "decision_text": "should i give 100% profits of the company to the employee",
+    "final_verdict": "Reject",
+    "average_confidence": 87,
+    "agent_analyses": [
+      {
+        "agent_role": "Finance",
+        "verdict": "Reject",
+        "confidence": 80,
+        "reasoning": "Giving 100% profits of the company to an employee would severely impact the company's cash flow and long-term financial viability. This decision would eliminate the company's ability to reinvest profits, pay dividends, and maintain a financial safety net. Furthermore, it would create an unsustainable compensation structure, potentially leading to employee turnover and decreased morale.",
+        "assumptions": [
+          "The company's profits are its primary source of funding for future growth and investments.",
+          "The employee's compensation is already competitive and aligned with industry standards.",
+          "The company has no other means of generating revenue or cash flow beyond profits."
+        ]
+      },
+      {
+        "agent_role": "Risk",
+        "verdict": "Reject",
+        "confidence": 95,
+        "reasoning": "Giving 100% of the company's profits to employees could lead to significant financial instability and undermine the company's ability to invest in its future growth and development. This decision could also lead to legal and regulatory issues, as it may not align with the company's fiduciary duties to its shareholders. Furthermore, it could create an uneven playing field, where employees may be unduly enriched at the expense of other stakeholders, potentially leading to operational risks and reputational damage.",
+        "assumptions": [
+          "Market risks: potential decline in company value",
+          "Legal risks: non-compliance with labor laws and regulations",
+          "Operational risks: decreased employee motivation and productivity due to lack of clear goals and incentives",
+          "Potential pitfalls: unequal distribution of profits, potential for employee exploitation"
+        ]
+      },
+      {
+        "agent_role": "Strategy",
+        "verdict": "Reject",
+        "confidence": 90,
+        "reasoning": "Giving 100% of the company's profits to employees may lead to short-term motivation and satisfaction, but it could also undermine the company's ability to invest in growth, research and development, and maintain a competitive edge. This decision could limit the company's scalability and hinder its ability to achieve long-term strategic goals. Furthermore, it may not be sustainable in the long run, as it could lead to an imbalance in the company's financial structure and potentially harm its market positioning.",
+        "assumptions": [
+          "The company operates in a competitive market where investment in growth and innovation is necessary for survival",
+          "The company has strategic goals that require investment in research and development, marketing, and expansion",
+          "Employees are already motivated and satisfied with their current compensation package",
+          "The company's financial structure is currently stable and can withstand significant changes in profit distribution"
+        ]
+      },
+      {
+        "agent_role": "Ethics",
+        "verdict": "Reject",
+        "confidence": 80,
+        "reasoning": "While giving 100% profits to employees may seem like a generous gesture, it raises significant concerns from an ESG and ethical perspective. This decision could lead to a lack of investment in environmental sustainability initiatives, potentially harming the planet. Furthermore, it may create an uneven power dynamic, where employees are beholden to the company for their livelihood, potentially compromising their autonomy and decision-making capacity. Additionally, this decision may not align with the company's long-term goals and may be seen as a short-term fix, which could negatively impact the company's brand reputation.",
+        "assumptions": [
+          "The company's primary goal is to maximize profits in the short-term.",
+          "Employees will not use their increased wealth to invest in environmental sustainability initiatives.",
+          "The company's brand reputation is not a top priority."
+        ]
+      },
+      {
+        "agent_role": "Operations",
+        "verdict": "Reject",
+        "confidence": 90,
+        "reasoning": "From an operational efficiency perspective, giving 100% of the company's profits to employees is not sustainable. This decision would leave the company without the necessary funds to invest in growth, research and development, and maintenance of its operations. It could also lead to an imbalance in resource allocation, as the company would not have the financial means to support its supply chain, logistics, and internal processes. Furthermore, this decision could create an unstable work environment, as employees might feel uncertain about their job security and the company's ability to operate effectively.",
+        "assumptions": [
+          "The company operates in a competitive market that requires continuous investment in growth and development",
+          "The company has a complex supply chain and logistics that require significant financial resources",
+          "The company's internal processes are dependent on the availability of financial resources",
+          "Employees' job security and motivation are influenced by the company's financial stability"
+        ]
+      }
+    ],
+    "explanation": "Board consensus is Reject with High agreement. Approvals: 0, Rejections: 5, Conditionals: 0.",
+    "mode": "enterprise",
+    "timestamp": "2026-02-28T11:15:47.871964"
+  },
+  {
+    "decision_text": "Can I give the 100% of the profits to my employees?",
+    "final_verdict": "Reject",
+    "average_confidence": 80,
+    "agent_analyses": [
+      {
+        "agent_role": "Finance",
+        "verdict": "Reject",
+        "confidence": 80,
+        "reasoning": "While rewarding employees with 100% of profits may boost morale and retention, it poses significant financial risks. This decision would eliminate our company's ability to reinvest profits, potentially hindering long-term growth and financial stability. Furthermore, it may lead to cash flow shortages, making it challenging to meet financial obligations, such as debt repayment and tax liabilities.",
+        "assumptions": [
+          "The company's current profit margins are sufficient to cover all expenses, including debt repayment and taxes.",
+          "Employee retention and morale are the primary drivers of business success.",
+          "The company has no alternative means of incentivizing employees, such as stock options or performance-based bonuses."
+        ]
+      },
+      {
+        "agent_role": "Risk",
+        "verdict": "Conditional",
+        "confidence": 60,
+        "reasoning": "Giving 100% of the profits to employees may lead to significant tax implications and potential legal issues, such as violating shareholder agreements or tax laws. Additionally, it may create an unsustainable business model, as the company may not be able to reinvest in growth, pay off debts, or maintain a stable financial position. However, it could also lead to increased employee motivation and retention, which could positively impact the company's long-term performance. A more balanced approach, such as a profit-sharing program, might be more suitable.",
+        "assumptions": [
+          "Tax laws and regulations may change, affecting the feasibility of the decision",
+          "Shareholder agreements and contracts may prohibit or restrict such a decision",
+          "Employee expectations and motivation may be impacted by the decision",
+          "The company's financial stability and growth prospects may be compromised",
+          "Alternative compensation structures, such as profit-sharing or equity-based incentives, may be more effective"
+        ]
+      },
+      {
+        "agent_role": "Strategy",
+        "verdict": "Reject",
+        "confidence": 90,
+        "reasoning": "Giving 100% of the profits to employees may lead to significant short-term motivation and satisfaction among staff, but it undermines the company's ability to reinvest in growth initiatives, pay off debts, and reward shareholders. This decision could hinder scalability, as the company would lack the necessary funds to expand operations, invest in research and development, or explore new markets. Furthermore, it could jeopardize the company's financial stability and its ability to weather economic downturns, ultimately affecting its competitive advantage and long-term sustainability.",
+        "assumptions": [
+          "The company operates in a competitive market where reinvestment is necessary for growth",
+          "Shareholders expect a return on their investment",
+          "The company has debts or financial obligations that need to be met",
+          "Employees are already motivated and satisfied with their current compensation package"
+        ]
+      },
+      {
+        "agent_role": "Ethics",
+        "verdict": "Conditional",
+        "confidence": 80,
+        "reasoning": "While giving 100% of the profits to employees may seem like a generous and socially responsible decision, it raises several concerns from an ESG and ethical perspective. Firstly, it may not be sustainable in the long term, as it could lead to financial instability and impact the company's ability to invest in research and development, innovation, and other essential areas. Secondly, it may create an uneven distribution of wealth among employees, potentially leading to resentment and decreased morale among those who do not receive the full profit share. Finally, it may not align with the company's governance structure and may require significant changes to its bylaws and policies.",
+        "assumptions": [
+          "The company has a stable financial situation and can afford to give away 100% of its profits.",
+          "The employees are willing to accept a fixed salary and no additional benefits.",
+          "The company's governance structure can accommodate such a significant change in its profit distribution policy."
+        ]
+      },
+      {
+        "agent_role": "Operations",
+        "verdict": "Reject",
+        "confidence": 90,
+        "reasoning": "From an operational efficiency perspective, allocating 100% of profits to employees may lead to cash flow issues, hindering the company's ability to invest in growth initiatives, pay off debts, or cover unforeseen expenses. This could ultimately impact the business's long-term sustainability and ability to maintain a competitive edge. Furthermore, such a decision may also affect the company's attractiveness to investors, potentially limiting access to future funding.",
+        "assumptions": [
+          "The company has outstanding debts or financial obligations",
+          "The business requires continuous investment in growth initiatives",
+          "Employees are already adequately incentivized through existing compensation structures",
+          "The decision would not significantly impact employee retention or morale"
+        ]
+      }
+    ],
+    "explanation": "Board consensus is Reject with Moderate agreement. Approvals: 0, Rejections: 3, Conditionals: 2.",
+    "mode": "enterprise",
+    "timestamp": "2026-02-28T11:52:39.550534",
+    "news": null
+  },
+  {
+    "decision_text": "should i invest on bitcoin of 20% stake of the company",
+    "final_verdict": "Reject",
+    "average_confidence": 80,
+    "agent_analyses": [
+      {
+        "agent_role": "Finance",
+        "verdict": "Reject",
+        "confidence": 80,
+        "reasoning": "Investing 20% of the company's stake in Bitcoin poses significant financial risks. The cryptocurrency market is highly volatile, and its value can fluctuate rapidly. Historically, Bitcoin's price has experienced significant drops, which could result in substantial losses for the company. Furthermore, the lack of regulatory oversight and potential for market manipulation add to the uncertainty. Considering the potential risks, the expected return on investment (ROI) may not justify the exposure to such volatility.",
+        "assumptions": [
+          "The company's current financial situation is stable and can withstand potential losses.",
+          "The 20% stake in Bitcoin will not be hedged or diversified to mitigate risks.",
+          "The expected ROI from the investment is not significantly higher than alternative investment opportunities."
+        ]
+      },
+      {
+        "agent_role": "Risk",
+        "verdict": "Reject",
+        "confidence": 80,
+        "reasoning": "Investing 20% of the company's stake in Bitcoin poses significant market risks due to the cryptocurrency's notorious volatility. The lack of regulatory clarity and potential for drastic price swings could lead to substantial losses, affecting the company's financial stability. Furthermore, operational risks arise from the potential for hacking, fraud, and technological failures associated with cryptocurrency transactions and storage. While Bitcoin has shown promise, the risks outweigh the potential benefits, especially considering the substantial portion of the company's assets being allocated to this investment.",
+        "assumptions": [
+          "High market volatility of Bitcoin",
+          "Lack of clear regulatory framework for cryptocurrencies",
+          "Operational risks including hacking and technological failures",
+          "Potential for significant financial losses",
+          "Insufficient diversification of the company's investment portfolio"
+        ]
+      },
+      {
+        "agent_role": "Strategy",
+        "verdict": "Reject",
+        "confidence": 80,
+        "reasoning": "Investing 20% of the company's stake in Bitcoin is a highly risky decision that could potentially destabilize the company's financial foundation. While Bitcoin has shown significant growth in the past, its volatility and lack of regulatory oversight make it an unreliable investment for a substantial portion of the company's assets. From a strategic growth perspective, this investment does not align with the goal of maintaining a stable financial position, which is crucial for long-term competitiveness and scalability. Furthermore, such an investment could divert resources away from core business activities that are more directly aligned with the company's mission and goals.",
+        "assumptions": [
+          "The company's primary goal is to maintain a stable financial position to support long-term growth and competitiveness.",
+          "Bitcoin's volatility and lack of regulatory oversight pose significant risks to the company's financial stability.",
+          "The company has core business activities that are more directly aligned with its mission and goals than investing in cryptocurrency."
+        ]
+      },
+      {
+        "agent_role": "Ethics",
+        "verdict": "Reject",
+        "confidence": 80,
+        "reasoning": "Investing 20% of the company's stake in Bitcoin poses significant ESG risks. Firstly, the environmental impact of Bitcoin mining is substantial, with high energy consumption and potential for e-waste generation. Secondly, the social implications of investing in a highly volatile and speculative asset may lead to financial instability for our stakeholders. Lastly, governance concerns arise from the lack of transparency and regulatory oversight in the Bitcoin market. While the potential returns may be attractive, the risks outweigh the benefits, and we should prioritize more sustainable and stable investment opportunities.",
+        "assumptions": [
+          "The company's primary goal is to maximize shareholder value while minimizing ESG risks.",
+          "The environmental and social impacts of Bitcoin mining will continue to be significant in the near future.",
+          "The company's stakeholders will prioritize financial stability over potential short-term gains."
+        ]
+      },
+      {
+        "agent_role": "Operations",
+        "verdict": "Reject",
+        "confidence": 80,
+        "reasoning": "From an operational efficiency perspective, investing 20% of the company's stake in bitcoin poses significant risks. The cryptocurrency market is highly volatile, and such a substantial investment could lead to considerable losses, affecting the company's financial stability and ability to operate effectively. Moreover, this investment does not align with the company's core business activities, potentially diverting resources away from essential operations and supply chain management. It could also introduce complexities in financial reporting and auditing, given the regulatory uncertainties surrounding cryptocurrencies.",
+        "assumptions": [
+          "The company's core business is not directly related to cryptocurrency or financial trading.",
+          "The investment in bitcoin is intended as a speculative investment rather than a strategic business move.",
+          "The company's financial health and operational efficiency are currently stable without the need for high-risk investments.",
+          "Regulatory environments regarding cryptocurrencies are subject to change and could impact the investment's viability."
+        ]
+      }
+    ],
+    "explanation": "Board consensus is Reject with High agreement. Approvals: 0, Rejections: 5, Conditionals: 0.",
+    "mode": "enterprise",
+    "timestamp": "2026-02-28T12:13:48.883098",
+    "news": null
   }
 ]

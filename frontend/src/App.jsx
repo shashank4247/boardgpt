@@ -7,7 +7,7 @@ import ConsensusDashboard from './components/ConsensusDashboard';
 import SkeletonCard from './components/SkeletonCard';
 import AgentsOverview from './components/AgentsOverview';
 import AgentDetail from './components/AgentDetail';
-import { Search, Bell, Download, Filter, TrendingUp, Menu, AlertTriangle } from 'lucide-react';
+import { Search, Bell, Download, Filter, TrendingUp, Menu, AlertTriangle, Newspaper, ExternalLink } from 'lucide-react';
 
 const API_BASE_URL = 'http://localhost:8000';
 
@@ -245,6 +245,35 @@ Assumptions: ${(a.assumptions || []).join(', ')}
                   />
                 ))}
               </div>
+
+              {analysis.news && analysis.news.articles && analysis.news.articles.length > 0 && (
+                <div className="mb-12 text-left">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                      <Newspaper size={20} />
+                    </div>
+                    <h2 className="text-2xl font-bold text-slate-900">NewsGPT Real-World Context</h2>
+                  </div>
+                  <p className="text-slate-600 mb-8 max-w-4xl text-lg leading-relaxed">{analysis.news.explanation}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {analysis.news.articles.map((article, idx) => (
+                      <div key={idx} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group flex flex-col">
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-xs font-bold text-slate-500 uppercase tracking-widest bg-slate-50 px-2 py-1 rounded-md">{article.source}</span>
+                          <span className="text-xs font-medium text-slate-400">{article.date}</span>
+                        </div>
+                        <h3 className="text-lg font-bold text-slate-900 mb-3 leading-snug group-hover:text-blue-600 transition-colors">{article.headline}</h3>
+                        <p className="text-sm text-slate-600 mb-6 flex-1">{article.summary}</p>
+                        <div className="mt-auto">
+                          <a href={`https://www.google.com/search?q=${encodeURIComponent(article.headline)}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors">
+                            Read Related <ExternalLink size={12} />
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </>
           )}
           {loading && (
